@@ -1,0 +1,3 @@
+docker run -d -p 80:80 -p 443:443 --name nginx-proxy --volume $HOME/certs:/etc/nginx/certs:ro  --volume /etc/nginx/vhost.d --volume /usr/share/nginx/html --volume /var/run/docker.sock:/tmp/docker.sock:ro --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true jwilder/nginx-proxy
+
+docker run -d  --name nginx-proxy-letsencrypt --volumes-from nginx-proxy   -v $HOME/certs:/etc/nginx/certs:rw   -v /var/run/docker.sock:/var/run/docker.sock:ro  --env "default_email=utkarshsharma@cedcoss.com"  jrcs/letsencrypt-nginx-proxy-companion
